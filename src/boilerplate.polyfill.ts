@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention,@typescript-eslint/tslint/config */
-import 'source-map-support/register';
+//import 'source-map-support/register';
 
 import { compact, map } from 'lodash';
 import { Brackets, QueryBuilder, SelectQueryBuilder } from 'typeorm';
