@@ -49,8 +49,19 @@ export class SocioController {
 
   @Post()
   @ApiConsumes('multipart/form-data')
-  async create(@Body() createSocioDto: any): Promise<any> {
+  @ApiConsumes('multipart/form-data')
+  @ApiFile([{ name: 'foto' }])
+  @UseInterceptors(FileInterceptor('foto', multerOptions))
+  async create(@Body() createSocioDto: any, @UploadedFile() file: IFile): Promise<any> {
+    if (file) {
+      //borrar la otra foto que habia
+      return (await this.socioService.create({ ...createSocioDto, foto: file.filename })).toDto();
+    }
+
     const createSocio = await this.socioService.create(createSocioDto);
+    // console.log(createSocio);
+    // return this.socioService.update(id, updateSocioDto);
+
     return createSocio.toDto();
   }
 

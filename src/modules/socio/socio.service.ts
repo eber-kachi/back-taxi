@@ -54,7 +54,7 @@ export class SocioService {
   async findOne(id: string) {
     return await this.socioRepository.findOneOrFail({
       where: { id: id },
-      relations: ['user', 'grupotrabajo'],
+      relations: ['user', 'grupotrabajo', 'veiculo'],
     });
     // {
     // where: findData,
